@@ -35,5 +35,5 @@ Enter your MongoDB URI in `db.js`
 
 ## Optimizations
 
-There is so much scope to optimize this code. I am still learning MERN and will optimize the code as I learn mode about the tech.
+There is so much scope to optimize this code. I am still learning MERN and will optimize the code as I learn more about the tech.
 
