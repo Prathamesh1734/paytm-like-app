@@ -12,7 +12,7 @@ Clone the repo
 
 ```bash
   git clone https://github.com/Prathamesh1734/paytm-like-app
-  cd my-project
+  cd paytm-like-app
 ```
 Install npm packages in both directories (backend and frontend)
 ```bash
