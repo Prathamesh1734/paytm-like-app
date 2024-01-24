@@ -14,9 +14,9 @@ const Signin = () => {
       const token = await AuthService.login(username, password);
       console.log("Login successful! Token:", token);
       setSuccessPopup(true);
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 2000);
     } catch (error) {
       setFailPopup(true);
       throw new Error("Login failed: ", error.message);
@@ -24,10 +24,10 @@ const Signin = () => {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 h-screen">
+    <section className="bg-gray-50 dark:bg-gradient-to-r from-sky-600 to-indigo-600 h-screen">
       {successPopup && (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen md:h-screen lg:py-0">
-          <div className="bg-white rounded-2xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-white rounded-2xl shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="flex flex-col items-center md:space-y-6 sm:p-8">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ const Signin = () => {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 stroke-gray-900 dark:stroke-white"
+                class="w-8 h-8 stroke-gray-900 dark:stroke-sky-500"
               >
                 <path
                   stroke-linecap="round"
@@ -44,14 +44,14 @@ const Signin = () => {
                 />
               </svg>
 
-              <h1 className="text-xl font-bold leading-tight tracking-normal text-gray-900 md:text-2xl dark:text-white">
+              <h1 className="text-xl font-bold leading-tight tracking-normal text-gray-900 md:text-2xl dark:bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">
                 Login successful!
               </h1>
-              <p className="text-base font-normal text-gray-500 dark:text-gray-400">
+              <p className="text-base font-normal text-gray-500 dark:text-slate-300">
                 Redirecting to application
               </p>
               <button
-                className="inline-flex justify-center items-center py-2 px-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                className="inline-flex justify-center items-center py-2 px-3 text-base font-medium text-center text-white rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
                 onClick={() => setSuccessPopup(false)}
               >
                 Close
@@ -63,7 +63,7 @@ const Signin = () => {
       ,
       {failPopup && (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen md:h-screen lg:py-0">
-          <div className="bg-white rounded-2xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-white rounded-2xl shadow-2xl  dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="flex flex-col p-6 space-y-4 items-center md:space-y-6 sm:p-8">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ const Signin = () => {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 stroke-gray-900 dark:stroke-white"
+                class="w-8 h-8 stroke-gray-900 dark:stroke-sky-500"
               >
                 <path
                   stroke-linecap="round"
@@ -80,11 +80,11 @@ const Signin = () => {
                 />
               </svg>
 
-              <h1 className="text-xl font-bold leading-tight tracking-normal text-gray-900 md:text-2xl dark:text-white">
+              <h1 className="text-xl font-bold leading-tight tracking-normal text-gray-900 md:text-2xl dark:bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">
                 Login failed!
               </h1>
               <button
-                className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
                 onClick={() => setFailPopup(false)}
               >
                 Retry
@@ -95,7 +95,7 @@ const Signin = () => {
       )}
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 shadow-2xl">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Login
             </h1>
@@ -134,12 +134,12 @@ const Signin = () => {
             <div className="flex flex-col-1 mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
               <button
                 onClick={login}
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-gradient-to-r from-cyan-500 to-blue-500 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Login
               </button>
               <Link to="/">
-                <button className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                <button className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -163,7 +163,7 @@ const Signin = () => {
                   Don't have an account yet?{" "}
                   <a
                     href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium text-primary-600 hover:underline dark:bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent bg-clip-text"
                   >
                     Signup here
                   </a>

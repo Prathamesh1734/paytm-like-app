@@ -29,9 +29,9 @@ const Signup = () => {
       );
       console.log("Signup success: ", response.data);
       setSuccessPopup(true);
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 3000);
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 3000);
     } catch (error) {
       console.error("signup fail: ", error.message);
     }
@@ -45,7 +45,7 @@ const Signup = () => {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 h-screen">
+    <section className="bg-gray-50 dark:bg-gradient-to-r from-sky-600 to-indigo-600 h-screen">
       {successPopup && (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen md:h-screen lg:py-0">
           <div className="bg-white rounded-2xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -81,8 +81,8 @@ const Signup = () => {
         </div>
       )}
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 shadow-2xl">
             <h1 className="text-xl font-bold leading-tight tracking-normal text-gray-900 md:text-2xl dark:text-white">
               Create an account
             </h1>
@@ -158,13 +158,13 @@ const Signup = () => {
               <div className="flex flex-col-1 mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 <button
                   onClick={submitData}
-                  className="w-full inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                  className="w-full inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
                 >
                   Sign Up
                 </button>
 
                 <Link to="/">
-                  <button className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                  <button className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -188,7 +188,7 @@ const Signup = () => {
                     Already have an account?{" "}
                     <a
                       href="#"
-                      className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                      className="font-medium text-primary-600 hover:underline dark:bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent bg-clip-text"
                     >
                       Login here
                     </a>
