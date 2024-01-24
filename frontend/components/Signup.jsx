@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,9 @@ const Signup = () => {
     lastName: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const [successPopup, setSuccessPopup] = useState(false);
 
   const submitChange = (e) => {
     setFormData({
@@ -25,6 +28,10 @@ const Signup = () => {
         formData
       );
       console.log("Signup success: ", response.data);
+      setSuccessPopup(true);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
     } catch (error) {
       console.error("signup fail: ", error.message);
     }
@@ -144,6 +151,18 @@ const Signup = () => {
                   </button>
                 </Link>
               </div>
+
+              <div>
+                {successPopup && (
+                  <div className="success-popup">
+                    <p>Signup successful!</p>
+                    <button onClick={() => setShowSuccessPopup(false)}>
+                      Close
+                    </button>
+                  </div>
+                )}
+              </div>
+
               <div>
                 <Link to="/signin">
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
