@@ -24,7 +24,15 @@ Enter your MongoDB URI in `db.js`
   "your-mogoose-URI"
 );
 ```
-
+Run the application
+```bash
+  cd backend
+  node index.js
+```
+```bash
+  cd frontend
+  npm run dev
+```
     
 ## Tech Stack
 
