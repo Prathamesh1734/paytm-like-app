@@ -29,9 +29,9 @@ const Signup = () => {
       );
       console.log("Signup success: ", response.data);
       setSuccessPopup(true);
-      // setTimeout(() => {
-      //   navigate("/dashboard");
-      // }, 3000);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
     } catch (error) {
       console.error("signup fail: ", error.message);
     }
