@@ -98,36 +98,16 @@ export default function Landing() {
           </div>
 
           <nav className="hidden gap-8 md:flex">
-            <a href="#features" className="hover:text-black-600">
+            <a href="#features" className="hover:text-slate-800">
               Features
             </a>
-            <a href="#how" className="hover:text-black-600">
+            <a href="#how" className="hover:text-slate-800">
               How It Works
             </a>
-            <a href="#reviews" className="hover:text-black-600">
+            <a href="#reviews" className="hover:text-slate-800">
               Reviews
             </a>
           </nav>
-
-          <div className="hidden md:flex gap-3">
-            <button
-              className="rounded-xl border px-5 py-2 hover:bg-gray-100"
-              onClick={() => {
-                navigate("/signin");
-              }}
-            >
-              Login
-            </button>
-
-            <button
-              className="rounded-xl bg-black px-5 py-2 text-white hover:bg-black-700"
-              onClick={() => {
-                navigate("/signup");
-              }}
-            >
-              Sign Up
-            </button>
-          </div>
 
           <Menu className="md:hidden" />
         </div>
@@ -302,7 +282,7 @@ export default function Landing() {
       <section id="features" className="py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center">
-            <span className="font-semibold text-black-600">Features</span>
+            <span className="font-semibold text-black">Features</span>
 
             <h2 className="mt-4 text-5xl font-bold">Everything you need</h2>
 
@@ -317,7 +297,7 @@ export default function Landing() {
                 key={feature.title}
                 className="rounded-3xl border p-8 transition hover:shadow-lg"
               >
-                <div className="mb-5 inline-flex rounded-2xl bg-black-100 p-4 text-black-600">
+                <div className="mb-5 inline-flex rounded-2xl bg-black-100 p-4 text-black">
                   {feature.icon}
                 </div>
 
@@ -395,7 +375,10 @@ export default function Landing() {
             Join millions of users sending money around the world.
           </p>
 
-          <button className="mt-10 rounded-2xl bg-white px-8 py-4 font-semibold text-black-600">
+          <button
+            className="mt-10 rounded-2xl bg-white px-8 py-4 font-semibold text-black
+          "
+          >
             Get Started Today
           </button>
         </div>
