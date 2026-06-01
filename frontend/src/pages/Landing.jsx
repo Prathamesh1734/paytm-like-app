@@ -63,8 +63,8 @@ export default function Landing() {
   const handleSubmit = async () => {
     try {
       const endpoint = isSignIn
-        ? "http://localhost:3000/api/v1/user/signup"
-        : "http://localhost:3000/api/v1/user/signin";
+        ? "http://localhost:3000/api/v1/user/signin"
+        : "http://localhost:3000/api/v1/user/signup";
 
       const payload = isSignIn
         ? { username, password }
@@ -135,12 +135,12 @@ export default function Landing() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-cyan-50" />
+        <div className="absolute inset-0 bg-linear-to-br from-slate-50 via-white to-cyan-50" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-24">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <div>
-              <span className="rounded-full bg-black-100 px-4 py-2 text-sm font-medium text-black-700">
+              <span className="rounded-full bg-slate-700 px-4 py-2 text-sm font-medium text-white">
                 Trusted by 1 Million+ customers
               </span>
 
@@ -239,7 +239,7 @@ export default function Landing() {
 
                   <button
                     onClick={handleSubmit}
-                    className="w-full rounded-xl bg-black py-4 font-semibold text-white"
+                    className="w-full rounded-xl bg-black py-4 font-semibold text-white hover:bg-slate-800"
                   >
                     {isSignIn ? "Sign In" : "Sign Up"}
                   </button>

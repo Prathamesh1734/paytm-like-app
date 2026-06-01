@@ -16,7 +16,7 @@ export default function Appbar() {
             label={"logout"}
             onClick={() => {
               localStorage.removeItem("token");
-              navigate("/signin");
+              navigate("/");
             }}
           />
         </div>
