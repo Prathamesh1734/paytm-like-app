@@ -1,6 +1,6 @@
 export default function Balance({ value }) {
   return (
-    <div className="rounded-3xl bg-linear-to-r from-emerald-500 to-emerald-600 p-8 text-white shadow-lg">
+    <div className="rounded-3xl bg-linear-to-r from-slate-400 to-slate-500 p-8 hover:from-slate-500 hover:to-slate-600 text-white shadow-lg">
       <p className="text-sm opacity-80">Available Balance</p>
 
       <h2 className="mt-3 text-4xl font-bold">₹ {value}</h2>

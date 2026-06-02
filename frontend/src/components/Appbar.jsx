@@ -9,7 +9,7 @@ export default function Appbar() {
       <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <div className="rounded-xl bg-black p-2 text-white font-bold">
+            <div className="rounded-xl bg-slate-700 p-2 text-white font-bold">
               $
             </div>
             <button
@@ -23,15 +23,13 @@ export default function Appbar() {
           </div>
 
           <nav className="hidden gap-8 md:flex">
-            <a href="#how" className="hover:text-slate-800">
-              Welcome
-            </a>
+            <div className="hover:text-slate-800 pt-2">Welcome</div>
             <button
               onClick={() => {
                 localStorage.removeItem("token");
                 navigate("/");
               }}
-              className="hover:text-slate-800"
+              className="rounded-xl bg-slate-600 px-5 py-2 text-white transition hover:bg-slate-700"
             >
               logout
             </button>

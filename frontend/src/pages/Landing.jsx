@@ -84,7 +84,7 @@ export default function Landing() {
       <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <div className="rounded-xl bg-black p-2 text-white font-bold">
+            <div className="rounded-xl bg-slate-700 p-2 text-white font-bold">
               $
             </div>
             <button

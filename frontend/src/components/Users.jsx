@@ -43,7 +43,7 @@ function User({ user }) {
   return (
     <div className="mb-3 flex items-center justify-between rounded-2xl bg-white p-4 shadow-sm">
       <div className="flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 font-bold text-emerald-600">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-600">
           {user.firstName[0]}
         </div>
 
@@ -58,7 +58,7 @@ function User({ user }) {
 
       <button
         onClick={() => navigate(`/send?id=${user._id}&name=${user.firstName}`)}
-        className="rounded-xl bg-emerald-600 px-5 py-2 text-white transition hover:bg-emerald-700"
+        className="rounded-xl bg-slate-600 px-5 py-2 text-white transition hover:bg-slate-700"
       >
         Send Money
       </button>
