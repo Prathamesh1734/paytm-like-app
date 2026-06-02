@@ -72,6 +72,7 @@ export default function Landing() {
 
       const response = await axios.post(endpoint, payload);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("username", response.data.username);
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

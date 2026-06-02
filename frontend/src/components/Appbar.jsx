@@ -3,6 +3,7 @@ import { Menu } from "lucide-react";
 
 export default function Appbar() {
   const navigate = useNavigate();
+  const firstName = localStorage.getItem("username");
 
   return (
     <>
@@ -23,10 +24,13 @@ export default function Appbar() {
           </div>
 
           <nav className="hidden gap-8 md:flex">
-            <div className="hover:text-slate-800 pt-2">Welcome</div>
+            <div className="hover:text-slate-800 pt-2">
+              Welcome, {firstName}
+            </div>
             <button
               onClick={() => {
                 localStorage.removeItem("token");
+                localStorage.removeItem("user");
                 navigate("/");
               }}
               className="rounded-xl bg-slate-600 px-5 py-2 text-white transition hover:bg-slate-700"

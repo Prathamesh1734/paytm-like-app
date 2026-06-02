@@ -5,27 +5,32 @@ import Heading from "../components/Heading.jsx";
 import ButtonComponent from "../components/ButtonComponent.jsx";
 
 export default function SendMoney() {
+  const [amount, setAmount] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+  const [label, setLabel] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const name = searchParams.get("name");
-  const [amount, setAmount] = useState(0);
+
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(false);
-  const [label, setLabel] = useState("");
 
   const handleSubmit = async () => {
     try {
-      if (amount <= 5) {
-        setLabel("enter valid amount");
+      if (amount <= 0) {
+        setLabel("Enter a valid amount");
         setShowPopup(true);
         return;
       }
+
+      setLoading(true);
 
       const response = await axios.post(
         "http://localhost:3000/api/v1/account/transfer",
         {
           to: id,
-          amount,
+          amount: Number(amount),
         },
         {
           headers: {
@@ -35,69 +40,104 @@ export default function SendMoney() {
       );
 
       if (response.status === 200) {
-        setLabel("success!");
+        setLabel("Transfer Successful");
         setShowPopup(true);
       }
     } catch (error) {
-      setLabel("insufficient balance");
+      setLabel(error.response?.data?.message || "Transfer Failed");
+
       setShowPopup(true);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
       {showPopup && <Popup label={label} />}
-      <div className="flex justify-center h-screen bg-gray-100">
-        <div className="h-full flex flex-col justify-center">
-          <div className="border h-min text-card-foreground max-w-md p-4 space-y-8 w-96 bg-white shadow-lg rounded-lg">
-            <div className="flex flex-col space-y-1.5 p-6 mb-0">
-              <h2 className="text-3xl font-bold text-center">send money</h2>
-            </div>
-            <div className="p-3">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
-                  <span className="text-2xl text-white">
-                    {name[0].toUpperCase()}
-                  </span>
-                </div>
-                <h3 className="text-2xl font-semibold">{name}</h3>
-              </div>
-              <div className="space-y-4 pt-1">
-                <div className="space-y-2 pt-2">
-                  <label
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    htmlFor="amount"
-                  >
-                    Amount (in ₹)
-                  </label>
-                  <input
-                    type="number"
-                    onChange={(e) => {
-                      setAmount(e.target.value);
-                    }}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                    id="amount"
-                    placeholder="enter amount"
-                  />
-                </div>
-                <button
-                  className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 hover:bg-green-700  text-white"
-                  onClick={handleSubmit}
-                >
-                  transfer
-                </button>
-                <button
-                  className="justify-center rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full border border-gray-500 bg-white-500 hover:bg-gray-200  text-black"
-                  onClick={() => {
-                    navigate("/dashboard");
-                  }}
-                >
-                  back
-                </button>
-              </div>
-            </div>
+      <div className="rounded-3xl bg-white p-8 shadow-xl">
+        <h1 className="text-3xl font-bold">Send Money</h1>
+
+        <p className="mt-2 text-slate-500">Transfer funds securely</p>
+
+        <div className="mt-8 flex items-center gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-500 text-xl font-bold text-white">
+            {name?.[0]?.toUpperCase()}
+          </div>
+
+          <div>
+            <h3 className="font-semibold">{name}</h3>
+
+            <p className="text-sm text-slate-500">Wallet User</p>
           </div>
         </div>
+
+        <div className="mt-8">
+          <label className="text-sm text-slate-500">Amount</label>
+
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
+            placeholder="5000"
+            className="
+                        mt-2
+                        w-full
+                        rounded-2xl
+                        border
+                        p-4
+                        text-2xl
+                        font-bold
+                        focus:border-slate-500
+                        focus:outline-none
+                      "
+          />
+        </div>
+
+        <div className="mt-6 rounded-2xl bg-slate-50 p-4">
+          <div className="flex justify-between">
+            <span>Transfer Fee</span>
+            <span>₹0</span>
+          </div>
+
+          <div className="mt-2 flex justify-between font-semibold">
+            <span>Total</span>
+            <span>₹{Number(amount || 0).toLocaleString()}</span>
+          </div>
+        </div>
+
+        <button
+          disabled={loading}
+          onClick={handleSubmit}
+          className="
+                      mt-6
+                      w-full
+                      rounded-2xl
+                      bg-slate-600
+                      py-4
+                      font-semibold
+                      text-white
+                      transition
+                      hover:bg-slate-700
+                      disabled:opacity-50
+                    "
+        >
+          {loading ? "Processing..." : "Transfer Money"}
+        </button>
+
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="
+      mt-3
+      w-full
+      rounded-2xl
+      border
+      py-4
+      font-semibold
+    "
+        >
+          Cancel
+        </button>
       </div>
     </>
   );
@@ -106,20 +146,34 @@ export default function SendMoney() {
 function Popup({ label }) {
   const navigate = useNavigate();
 
+  const success = label.includes("Success");
+
   return (
-    <div className="bg-black/50 fixed inset-0 flex justify-center">
-      <div className="flex flex-col justify-center">
-        <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
-          <Heading label={label} />
-          <div className="pt-4">
-            <ButtonComponent
-              onClick={async () => {
-                navigate("/dashboard");
-              }}
-              label={"back"}
-            />
-          </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50">
+      <div className="w-96 rounded-3xl bg-white p-8 text-center shadow-xl">
+        <div
+          className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${
+            success ? "bg-slate-100" : "bg-red-100"
+          }`}
+        >
+          <span className="text-3xl">{success ? "✓" : "!"}</span>
         </div>
+
+        <h2 className="mt-4 text-2xl font-bold">{label}</h2>
+
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="
+            mt-6
+            w-full
+            rounded-2xl
+            bg-slate-600
+            py-3
+            text-white
+          "
+        >
+          Back to Dashboard
+        </button>
       </div>
     </div>
   );

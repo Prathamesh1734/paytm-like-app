@@ -52,7 +52,9 @@ router.post("/signup", async (req, res) => {
 
   const token = jwt.sign({ userId }, JWT_SECRET);
 
-  res.status(200).json({ message: "user created", token });
+  res
+    .status(200)
+    .json({ message: "user created", token, username: user.username });
 });
 
 router.post("/signin", async (req, res) => {
@@ -69,9 +71,16 @@ router.post("/signin", async (req, res) => {
     password: req.body.password,
   });
 
+  console.log();
+
   if (user) {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET);
-    return res.status(200).json({ message: "signed in success", token: token });
+
+    return res.status(200).json({
+      message: "signed in success",
+      token: token,
+      username: user.username,
+    });
   } else {
     return res.status(411).json({ message: "error while logging in" });
   }
