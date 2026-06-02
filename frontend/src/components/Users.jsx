@@ -41,28 +41,27 @@ function User({ user }) {
   const navigate = useNavigate();
 
   return (
-    <div className="flex justify-between">
-      <div className="flex">
-        <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2">
-          <div className="flex flex-col justify-center h-full text-xl">
-            {user.firstName[0]}
-          </div>
+    <div className="mb-3 flex items-center justify-between rounded-2xl bg-white p-4 shadow-sm">
+      <div className="flex items-center gap-4">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 font-bold text-emerald-600">
+          {user.firstName[0]}
         </div>
-        <div className="flex flex-col justify-center h-full">
-          <div>
+
+        <div>
+          <h4 className="font-semibold">
             {user.firstName} {user.lastName}
-          </div>
+          </h4>
+
+          <p className="text-sm text-slate-500">Wallet User</p>
         </div>
       </div>
 
-      <div className="flex flex-col justify-center h-full">
-        <ButtonComponent
-          onClick={(e) => {
-            navigate("/send?id=" + user._id + "&name=" + user.firstName);
-          }}
-          label={"send money"}
-        />
-      </div>
+      <button
+        onClick={() => navigate(`/send?id=${user._id}&name=${user.firstName}`)}
+        className="rounded-xl bg-emerald-600 px-5 py-2 text-white transition hover:bg-emerald-700"
+      >
+        Send Money
+      </button>
     </div>
   );
 }
