@@ -137,7 +137,7 @@ export default function Landing() {
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <button className="rounded-2xl bg-black-600 px-8 py-4 font-semibold text-black transition hover:bg-black-700">
+                <button className="rounded-2xl bg-black px-8 py-4 font-semibold text-white transition hover:bg-black-700">
                   Send Money
                 </button>
 
@@ -326,7 +326,7 @@ export default function Landing() {
                 key={step}
                 className="rounded-3xl bg-slate-100 p-8 text-center"
               >
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-black-600 text-xl font-bold text-black">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-black text-xl font-bold text-white">
                   {index + 1}
                 </div>
 
